@@ -3,6 +3,7 @@ __author__ = 'Joshua'
 
 class Game():
     board_values = []
+    reward = 10
 
     def __init__(self):
         self.board_values = [[0, 1, 0, 1, 0, 1, 0, 1],
@@ -92,7 +93,7 @@ class Game():
                     self.board_values[y][x] = 0
                     self.board_values[y + 1][x + 1] = 0
                     self.board_values[y + 2][x + 2] = player
-                    return 10
+                    return self.reward
 
             if direction == "DL":
                 new_space = self.board_values[y + 1][x - 1]
@@ -104,7 +105,7 @@ class Game():
                     self.board_values[y][x] = 0
                     self.board_values[y + 1][x - 1] = 0
                     self.board_values[y + 2][x - 2] = player
-                    return 10
+                    return self.reward
 
         if player == 2:
             if direction == "UR":
@@ -117,7 +118,7 @@ class Game():
                     self.board_values[y][x] = 0
                     self.board_values[y - 1][x + 1] = 0
                     self.board_values[y - 2][x + 2] = player
-                    return 10
+                    return self.reward
 
             if direction == "UL":
                 new_space = self.board_values[y - 1][x - 1]
@@ -128,7 +129,7 @@ class Game():
                     self.board_values[y][x] = 0
                     self.board_values[y - 1][x - 1] = 0
                     self.board_values[y - 2][x - 2] = player
-                    return 10
+                    return self.reward
 
     def print_board(self):
         print("YX  0   1   2   3   4   5   6   7")
