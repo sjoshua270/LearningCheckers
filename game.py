@@ -10,4 +10,4 @@ class LaunchGame():
                 line += "| "
             line += "|"
             print(line)
-            jhdtsrdfguugtngfh
+            print("Cool")
