@@ -1,7 +1,7 @@
 __author__ = 'Joshua'
 
 
-class LaunchGame():
+class Game():
 
     def __init__(self):
         pass

@@ -1,6 +1,6 @@
 __author__ = 'Joshua'
 
-from game import LaunchGame
+from game import Game
 
-run = LaunchGame()
+run = Game()
 run.run_game()
