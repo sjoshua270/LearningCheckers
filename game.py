@@ -151,3 +151,12 @@ class Game():
             if y != len(self.board_values) - 1:
                 print(divider + "|")
         print("  '-------------------------------'")
+
+    def finished(self):
+        done = False
+        for x in range(0, len(self.board_values)):
+            if self.board_values[x].count(1) == 0:
+                done = True
+            if self.board_values[x].count(2) == 0:
+                done = True
+        return done

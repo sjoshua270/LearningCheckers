@@ -1,19 +1,13 @@
 __author__ = 'Joshua'
 
 from game import Game
+from bot import Bot
 
-player = 1
+player1 = Bot(1)
+player2 = Bot(2)
 
 game = Game()
 game.print_board()
-for x in range(0, 10):
-    pieces = game.get_pieces(player)
-    moves = []
-    iteration = -1
-    while len(moves) == 0:
-        iteration += 1
-        moves = game.get_moves(player, pieces[iteration])
-    print(pieces[iteration])
-    print(moves)
-    game.move_piece(player, pieces[iteration], moves[0])
-    game.print_board()
+while not game.finished():
+    player1.make_move()
+    player2.make_move()
