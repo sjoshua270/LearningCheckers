@@ -51,8 +51,8 @@ class Game():
     def get_pieces(self, player):
         global board_values
         pieces = []
-        for x in range(0, board_values.size):
-            for y in range(0, board_values[x].size):
+        for x in range(0, len(board_values)):
+            for y in range(0, len(board_values[x])):
                 if board_values[x][y] == player:
                     pieces.append((x, y))
         return pieces
