@@ -28,6 +28,7 @@ class Bot():
             actions = self.game.get_moves(self.number, piece)
             for action in actions:
                 move = (piece, action)
+                # move_piece() returns tuple: (board, reward)
                 new_board = self.game.move_piece(self.number, move, False)
                 if new_board[1] > best_qvalue:
                     best_qvalue = new_board[1]
