@@ -34,7 +34,7 @@ class Game():
         return pieces
 
     # piece is a tuple (y, x, number)
-    def get_moves(self, player, piece):
+    def get_directions(self, player, piece):
         moves = []
         y = piece[0]
         x = piece[1]
@@ -191,6 +191,8 @@ class Game():
                 output += (divider + "|\n")
         output += "  '-------------------------------'\n"
         sys.stdout.write(output)
+        for row in self.board_values:
+            sys.stdout.write(str(row) + "\n")
 
     def finished(self):
         p1_count = 0

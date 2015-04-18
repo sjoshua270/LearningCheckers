@@ -1,7 +1,5 @@
 __author__ = 'Joshua'
 
-from time import sleep
-
 from game import Game
 from bot import Bot
 
@@ -12,9 +10,15 @@ player2 = Bot(2, game)
 turns = 0
 while not game.finished():
     turns += 1
-    player1.make_move()
+    player1.random_move()
     game.print_board()
-    sleep(0.5)
-    player2.make_move()
+    try:
+        input()
+    except:
+        pass
+    player2.random_move()
     game.print_board()
-    sleep(0.5)
+    try:
+        input()
+    except:
+        pass

@@ -1,5 +1,7 @@
 __author__ = 'Joshua'
 
+import random
+
 
 class Bot():
     def __init__(self, player_number, game):
@@ -7,25 +9,21 @@ class Bot():
         self.game = game
         self.q_states = {}
 
-    def basic_move(self):
+    def random_move(self):
         pieces = self.game.get_pieces(self.number)
-        done = False
-        move = ()
+        moves = []
         for piece in pieces:
-            if not done:
-                directions = self.game.get_moves(self.number, piece)
-                if len(directions) > 0:
-                    done = True
-                    move = (piece, directions[0])
-        if not len(move) == 0:
-            self.game.move_piece(self.number, move, True)
+            directions = self.game.get_directions(self.number, piece)
+            for direction in directions:
+                moves.append((piece, direction))
+        self.game.move_piece(self.number, random.choice(moves), True)
 
     def make_move(self):
         pieces = self.game.get_pieces(self.number)
         best_qvalue = float('-inf')
         best_move = None
         for piece in pieces:
-            actions = self.game.get_moves(self.number, piece)
+            actions = self.game.get_directions(self.number, piece)
             for action in actions:
                 move = (piece, action)
                 # move_piece() returns tuple: (board, reward)
