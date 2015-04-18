@@ -17,3 +17,4 @@ for x in range(0, 10):
     print(moves)
     game.move_piece(player, pieces[iteration], moves[0])
     game.print_board()
+
