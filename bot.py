@@ -13,10 +13,12 @@ class Bot():
         pieces = self.game.get_pieces(self.number)
         moves = []
         for piece in pieces:
-            directions = self.game.get_directions(self.number, piece)
+            directions = self.game.get_moves(self.number, piece)
             for direction in directions:
-                moves.append((piece, direction))
-        self.game.move_piece(self.number, random.choice(moves), True)
+                moves.append(direction)
+        if len(moves) > 0:
+            move = random.choice(moves)
+            self.game.move_piece(self.number, move, True)
 
     def make_move(self):
         pieces = self.game.get_pieces(self.number)
