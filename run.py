@@ -11,14 +11,9 @@ turns = 0
 while not game.finished():
     turns += 1
     player1.random_move()
-    game.print_board()
-    try:
-        input()
-    except:
-        pass
     player2.random_move()
     game.print_board()
-    try:
-        input()
-    except:
-        pass
+    # try:
+    # input()
+    # except:
+    #     pass
