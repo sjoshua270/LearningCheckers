@@ -25,4 +25,6 @@ class Bot():
     def move(self):
         move = self.agent.get_move(self.board)
         if move:
+            board, reward = self.board.move_piece(self.agent.number, move, False)
+            self.agent.update(self.board, move, board, reward)
             self.board.move_piece(self.agent.number, move, True)

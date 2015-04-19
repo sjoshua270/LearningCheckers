@@ -13,8 +13,9 @@ class Agent():
         self.number = number
 
     def get_q_value(self, board, move):
+        key = str((board, move))
         try:
-            return self.q_values[(board, move)]
+            return self.q_values[key]
         except KeyError:
             return 0.0
 
@@ -53,9 +54,10 @@ class Agent():
         return self.compute_move_from_q_values(board)
 
     def update(self, board, move, next_board, reward):
+        key = str((board, move))
         try:
-            q = self.q_values[(board, move)]
+            q = self.q_values[key]
         except KeyError:
             q = 0.0
-        self.q_values[(board, move)] = (1 - self.alpha) * q + self.alpha * (
+        self.q_values[key] = (1 - self.alpha) * q + self.alpha * (
             reward + self.discount * self.compute_value_from_q_value(next_board))
