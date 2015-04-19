@@ -1,19 +1,23 @@
 __author__ = 'Joshua'
 
-from game import Game
+from board import Board
 from bot import Bot
+from agent import Agent
 
 
-game = Game()
-player1 = Bot(1, game)
-player2 = Bot(2, game)
-turns = 0
-while not game.finished():
-    turns += 1
-    player1.random_move()
-    player2.random_move()
-    game.print_board()
-    # try:
-    # input()
-    # except:
-    #     pass
+board = Board()
+agent1 = Agent(board, 1)
+agent2 = Agent(board, 2)
+player1 = Bot(board, agent1)
+player2 = Bot(board, agent2)
+all_turns = []
+for x in range(0, 10):
+    turns = 0
+    while not board.finished():
+        turns += 1
+        player1.move()
+        player2.move()
+    board.print_board()
+    all_turns.append(turns)
+    board = Board()
+print(all_turns)

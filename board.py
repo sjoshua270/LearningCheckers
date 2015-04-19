@@ -4,7 +4,7 @@ import copy
 import sys
 
 
-class Game():
+class Board():
     board_values = []
     reward = 10
 
@@ -118,7 +118,7 @@ class Game():
         if self.king_achieved(player, confirm):
             reward = 50
 
-        return board, reward
+        return reward
 
     def king_achieved(self, player, confirm):
         king = False
@@ -133,15 +133,7 @@ class Game():
                     self.board_values[y][x] = player + 2
         return king
 
-    def print_board(self):
-        print_values = {
-            0: '|   ',
-            1: '| B ',
-            2: '| R ',
-            3: '| BK',
-            4: '| RK'
-        }
-
+    def get_values(self):
         p1_count = 0
         p2_count = 0
         p1_kount = 0
@@ -156,12 +148,18 @@ class Game():
                     p1_kount += 1
                 if self.board_values[y][x] == 4:
                     p2_kount += 1
+        return p1_count, p2_count, p1_kount, p2_kount
 
-        output = "B: " + str(p1_count) + \
-                 " R: " + str(p2_count) + \
-                 " BK: " + str(p1_kount) + \
-                 " RK: " + str(p2_kount) + "\n"
-        output += "YX  0   1   2   3   4   5   6   7\n"
+    def print_board(self):
+        print_values = {
+            0: '|   ',
+            1: '| B ',
+            2: '| R ',
+            3: '| BK',
+            4: '| RK'
+        }
+
+        output = "YX  0   1   2   3   4   5   6   7\n"
         output += "  ,-------------------------------,\n"
         for y in range(0, len(self.board_values)):
             line = str(y) + " "
