@@ -85,67 +85,8 @@ class Game():
 
         return valid_moves
 
-    # piece is a tuple (y, x, number)
-    # def get_directions(self, player, piece):
-    # moves = []
-    #     y = piece[0]
-    #     x = piece[1]
-    #     number = piece[2]
-    #     valid_pieces_down = (1, 3, 4)
-    #     valid_pieces_up = (2, 3, 4)
-    #
-    #     attack_targets = ()
-    #     if player == 1:
-    #         attack_targets = (2, 4)
-    #     if player == 2:
-    #         attack_targets = (1, 3)
-    #
-    #     if number in valid_pieces_down:
-    #         try:
-    #             # DownRight
-    #             new_space = self.board_values[y + 1][x + 1]
-    #             if new_space == 0:
-    #                 moves.append("DR")
-    #             if new_space in attack_targets:
-    #                 if self.board_values[y + 2][x + 2] == 0:
-    #                     moves.append("DR")
-    #         except IndexError:
-    #             pass
-    #         try:
-    #             # DownLeft
-    #             new_space = self.board_values[y + 1][x - 1]
-    #             if new_space == 0 and not x - 1 < 0:
-    #                 moves.append("DL")
-    #             if new_space in attack_targets:
-    #                 if self.board_values[y + 2][x - 2] == 0 and not x - 2 < 0:
-    #                     moves.append("DL")
-    #         except IndexError:
-    #             pass
-    #
-    #     if number in valid_pieces_up:
-    #         try:
-    #             # UpRight
-    #             new_space = self.board_values[y - 1][x + 1]
-    #             if new_space == 0 and not y - 1 < 0:
-    #                 moves.append("UR")
-    #             if new_space in attack_targets:
-    #                 if self.board_values[y - 2][x + 2] == 0 and not y - 2 < 0:
-    #                     moves.append("UR")
-    #         except IndexError:
-    #             pass
-    #         try:
-    #             # UpLeft
-    #             new_space = self.board_values[y - 1][x - 1]
-    #             if new_space == 0 and not (y - 1 < 0 or x - 1 < 0):
-    #                 moves.append("UL")
-    #             if new_space in attack_targets:
-    #                 if self.board_values[y - 2][x - 2] == 0 and not (y - 2 < 0 or x - 2 < 0):
-    #                     moves.append("UL")
-    #         except IndexError:
-    #             pass
-    #
-    #     return moves
-
+    # Arg 'move' is comprised of (piece(y, x, number), direction(str), jump(bool))
+    # Confirm is whether or not to apply the attempted move
     def move_piece(self, player, move, confirm):
         y = move[0][0]
         x = move[0][1]
@@ -178,69 +119,6 @@ class Game():
             reward = 50
 
         return board, reward
-
-    # # move corresponds of (piece, direction)
-    # # confirm is whether or not to submit the move
-    # def move_piece(self, player, move, confirm):
-    # y = move[0][0]
-    #     x = move[0][1]
-    #     number = move[0][2]
-    #     direction = move[1]
-    #     board = copy.deepcopy(self.board_values)
-    #     reward = 0
-    #     valid_players_down = (1, 3, 4)
-    #     valid_players_up = (2, 3, 4)
-    #
-    #     if number in valid_players_down:
-    #         if direction == "DR":
-    #             new_space = board[y + 1][x + 1]
-    #             if new_space == 0:
-    #                 board[y][x] = 0
-    #                 board[y + 1][x + 1] = number
-    #             if new_space == 2:
-    #                 board[y][x] = 0
-    #                 board[y + 1][x + 1] = 0
-    #                 board[y + 2][x + 2] = number
-    #                 reward = self.reward
-    #
-    #         if direction == "DL":
-    #             new_space = board[y + 1][x - 1]
-    #             if new_space == 0:
-    #                 board[y][x] = 0
-    #                 board[y + 1][x - 1] = number
-    #             if new_space == 2:
-    #                 board[y][x] = 0
-    #                 board[y + 1][x - 1] = 0
-    #                 board[y + 2][x - 2] = number
-    #                 reward = self.reward
-    #
-    #     if number in valid_players_up:
-    #         if direction == "UR":
-    #             new_space = board[y - 1][x + 1]
-    #             if new_space == 0:
-    #                 board[y][x] = 0
-    #                 board[y - 1][x + 1] = number
-    #             if new_space == 1:
-    #                 board[y][x] = 0
-    #                 board[y - 1][x + 1] = 0
-    #                 board[y - 2][x + 2] = number
-    #                 reward = self.reward
-    #
-    #         if direction == "UL":
-    #             new_space = board[y - 1][x - 1]
-    #             if new_space == 0:
-    #                 board[y][x] = 0
-    #                 board[y - 1][x - 1] = number
-    #             if new_space == 1:
-    #                 board[y][x] = 0
-    #                 board[y - 1][x - 1] = 0
-    #                 board[y - 2][x - 2] = number
-    #                 reward = self.reward
-    #     if confirm:
-    #         self.board_values = board
-    #     if self.king_achieved(player, confirm):
-    #         reward = 50
-    #     return board, reward
 
     def king_achieved(self, player, confirm):
         king = False
