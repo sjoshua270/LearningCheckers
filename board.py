@@ -118,7 +118,7 @@ class Board():
         if self.king_achieved(player, confirm):
             reward = 50
 
-        return reward
+        return board, reward
 
     def king_achieved(self, player, confirm):
         king = False
