@@ -75,13 +75,14 @@ class Board():
                     else:
                         new_y += diffs['y'][i]
                         new_x += diffs['x'][i]
-                        # Will pass if index out of range
-                        try:
-                            new_space = self.board_values[new_y][new_x]
-                            if new_space == 0:
-                                valid_moves.append((piece, directions[i], True))
-                        except IndexError:
-                            pass
+                        if 0 <= new_y < 8 and 0 <= new_x < 8:
+                            # Will pass if index out of range
+                            try:
+                                new_space = self.board_values[new_y][new_x]
+                                if new_space == 0:
+                                    valid_moves.append((piece, directions[i], True))
+                            except IndexError:
+                                pass
 
         return valid_moves
 
